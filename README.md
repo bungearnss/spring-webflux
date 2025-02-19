@@ -36,10 +36,10 @@ java -jar external-services.jar
 ```
 
 - It uses port `7070` by default.
-- 
 ### How different between Traditional Rest Controller and WebFlux Rest Controller
 
 1. **Traditional** : Response arrived all at once, **WebFlux** : Response is gradually arrived one object at a time
+![Screenshot 2025-02-19 142018](https://github.com/user-attachments/assets/6a27b0b9-a4c6-40ba-8d77-849e24ede0e3)
 2. To be continued
 
 ### Reference Documentation
