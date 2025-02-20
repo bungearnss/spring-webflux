@@ -1,6 +1,6 @@
 package com.spring.webflux_playground.controller;
 
-import com.spring.webflux_playground.models.Product;
+import com.spring.webflux_playground.models.ProductRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,30 +22,30 @@ public class ReactiveController {
     private final WebClient webClient = WebClient.builder().build();
 
     @GetMapping("products")
-    public Flux<Product> getProducts() {
+    public Flux<ProductRecord> getProducts() {
         return this.webClient.get()
                 .uri(externalUrl + "/demo01/products")
                 .retrieve()
-                .bodyToFlux(Product.class)
+                .bodyToFlux(ProductRecord.class)
                 .doOnNext(p -> log.info("FLUX received products: {}", p));
     }
 
     @GetMapping("products/notorious")
-    public Flux<Product> getProductsNotorious() {
+    public Flux<ProductRecord> getProductsNotorious() {
         return this.webClient.get()
                 .uri(externalUrl + "/demo01/products/notorious")
                 .retrieve()
-                .bodyToFlux(Product.class)
+                .bodyToFlux(ProductRecord.class)
                 .onErrorComplete()
                 .doOnNext(p -> log.info("FLUX received products notorious: {}", p));
     }
 
     @GetMapping(value = "products/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<Product> getProductsStream() {
+    public Flux<ProductRecord> getProductsStream() {
         return this.webClient.get()
                 .uri(externalUrl + "/demo01/products")
                 .retrieve()
-                .bodyToFlux(Product.class)
+                .bodyToFlux(ProductRecord.class)
                 .doOnNext(p -> log.info("received products stream: {}", p));
     }
 }

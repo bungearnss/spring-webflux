@@ -1,6 +1,6 @@
 package com.spring.webflux_playground.controller;
 
-import com.spring.webflux_playground.models.Product;
+import com.spring.webflux_playground.models.ProductRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,24 +26,24 @@ public class TraditionalController {
             .build();
 
     @GetMapping("products")
-    public List<Product> getProducts() {
-        List<Product> productList = this.restClient.get()
+    public List<ProductRecord> getProducts() {
+        List<ProductRecord> productRecordList = this.restClient.get()
                 .uri(externalUrl + "/demo01/products")
                 .retrieve()
-                .body(new ParameterizedTypeReference<List<Product>>() {
+                .body(new ParameterizedTypeReference<List<ProductRecord>>() {
                 });
-        log.info("TRAD received products: {}", productList);
-        return productList;
+        log.info("TRAD received products: {}", productRecordList);
+        return productRecordList;
     }
 
     @GetMapping("products/notorious")
-    public List<Product> getProductsNotorious() {
-        List<Product> productList = this.restClient.get()
+    public List<ProductRecord> getProductsNotorious() {
+        List<ProductRecord> productRecordList = this.restClient.get()
                 .uri(externalUrl + "/demo01/products/notorious")
                 .retrieve()
-                .body(new ParameterizedTypeReference<List<Product>>() {
+                .body(new ParameterizedTypeReference<List<ProductRecord>>() {
                 });
-        log.info("TRAD received products notorious: {}", productList);
-        return productList;
+        log.info("TRAD received products notorious: {}", productRecordList);
+        return productRecordList;
     }
 }
