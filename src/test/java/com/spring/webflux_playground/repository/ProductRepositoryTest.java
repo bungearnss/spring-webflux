@@ -6,11 +6,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.r2dbc.DataR2dbcTest;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import reactor.test.StepVerifier;
 
 @DataR2dbcTest
+@Profile("test")
 public class ProductRepositoryTest {
 
     private static final Logger log = LoggerFactory.getLogger(ProductRepositoryTest.class);
